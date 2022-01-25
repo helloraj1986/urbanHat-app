@@ -1,0 +1,89 @@
+.card {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 350px;
+	width: 350px;
+	border-radius: 10px;
+	position: relative;
+	box-shadow: 1px 3px 29px -5px #273236;
+	margin: 20px 20px;
+
+	.imgContainer {
+		width: 100%;
+		overflow: hidden;
+		background: #000;
+		border-radius: 10px;
+
+		.cardImage {
+			width: 100%;
+			// height: 100%;
+			object-fit: cover;
+		}
+	}
+	.cardContent {
+		position: absolute;
+		bottom: 0px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		.cardTitle {
+			color: #ebe4e4;
+			font-family: Jost, sans-serif;
+			margin-bottom: 10px;
+			color: #e63946;
+		
+		}
+
+		.btn {
+			opacity: 0;
+			cursor: pointer;
+			color: orange;
+			text-decoration: underline;
+			font-weight: 700;
+
+			&:hover {
+				letter-spacing: 1px;
+				transition: letter-spacing 250ms ease;
+			}
+	
+		}
+	}
+
+	//mouse hover in
+	&:hover > .imgContainer > .cardImage {
+		transform: scale(1.01);
+		opacity: 0.5;
+		transition: transform 300ms ease;
+	}
+
+	&:hover > .cardContent {
+		transition: transform 450ms ease;
+		transform: translateY(-10px);
+	}
+	&:hover > .cardContent > .btn {
+		transition: opacity 450ms ease;
+		opacity: 1;
+	}
+	&:hover > .cardContent >.cardTitle {
+		color: #ebe4e4;
+	}
+
+	//mouse hover out
+	&:not(:hover) > .imgContainer > .cardImage {
+		transform: scale(1);
+		opacity: 1;
+		transition: transform 300ms ease, opacity 300ms ease;
+	}
+	&:not(:hover) > .cardContent {
+		transition: transform 250ms ease;
+		transform: translateY(0px);
+	}
+	&:not(:hover) > .cardContent > .btn {
+		transition: opacity 250ms ease;
+		opacity: 0;
+	}
+}

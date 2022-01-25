@@ -1,0 +1,129 @@
+.card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 350px;
+  width: 350px;
+  border-radius: 10px;
+  position: relative;
+  -webkit-box-shadow: 1px 3px 29px -5px #273236;
+          box-shadow: 1px 3px 29px -5px #273236;
+  margin: 20px 20px;
+}
+
+.card .imgContainer {
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+  border-radius: 10px;
+}
+
+.card .imgContainer .cardImage {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.card .cardContent {
+  position: absolute;
+  bottom: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.card .cardContent .cardTitle {
+  color: #ebe4e4;
+  font-family: Jost, sans-serif;
+  margin-bottom: 10px;
+  color: #e63946;
+}
+
+.card .cardContent .btn {
+  opacity: 0;
+  cursor: pointer;
+  color: orange;
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.card .cardContent .btn:hover {
+  letter-spacing: 1px;
+  -webkit-transition: letter-spacing 250ms ease;
+  transition: letter-spacing 250ms ease;
+}
+
+.card:hover > .imgContainer > .cardImage {
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
+  opacity: 0.5;
+  -webkit-transition: -webkit-transform 300ms ease;
+  transition: -webkit-transform 300ms ease;
+  transition: transform 300ms ease;
+  transition: transform 300ms ease, -webkit-transform 300ms ease;
+}
+
+.card:hover > .cardContent {
+  -webkit-transition: -webkit-transform 450ms ease;
+  transition: -webkit-transform 450ms ease;
+  transition: transform 450ms ease;
+  transition: transform 450ms ease, -webkit-transform 450ms ease;
+  -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
+}
+
+.card:hover > .cardContent > .btn {
+  -webkit-transition: opacity 450ms ease;
+  transition: opacity 450ms ease;
+  opacity: 1;
+}
+
+.card:hover > .cardContent > .cardTitle {
+  color: #ebe4e4;
+}
+
+.card:not(:hover) > .imgContainer > .cardImage {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  opacity: 1;
+  -webkit-transition: opacity 300ms ease, -webkit-transform 300ms ease;
+  transition: opacity 300ms ease, -webkit-transform 300ms ease;
+  transition: transform 300ms ease, opacity 300ms ease;
+  transition: transform 300ms ease, opacity 300ms ease, -webkit-transform 300ms ease;
+}
+
+.card:not(:hover) > .cardContent {
+  -webkit-transition: -webkit-transform 250ms ease;
+  transition: -webkit-transform 250ms ease;
+  transition: transform 250ms ease;
+  transition: transform 250ms ease, -webkit-transform 250ms ease;
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
+}
+
+.card:not(:hover) > .cardContent > .btn {
+  -webkit-transition: opacity 250ms ease;
+  transition: opacity 250ms ease;
+  opacity: 0;
+}
+/*# sourceMappingURL=card.css.map */
