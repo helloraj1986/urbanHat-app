@@ -91,7 +91,6 @@ const PriceAndCategoryBar = () => {
 						id='demo-simple-select-filled'
 						value={values.rating}
 						onChange={(e) => setValues({ ...values, rating: e.target.value })}
-						disabled
 					>
 						<MenuItem value=''>
 							<em>None</em>

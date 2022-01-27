@@ -49,50 +49,29 @@ export const ProductReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ActionTypes.SET_PRODUCTS:
 			return { ...state, products: action.payload }
-		//
 		case ActionTypes.USER_SELECTED_PRODUCTS:
 			const { sort, category, rating } = action.payload
-			//utility function for sorting
-			const sortUtility = (ArrayToSort, key) => _.sortBy(ArrayToSort, key.toLowerCase())
-
-			let sortedItems = []
-			let tempState = []
-			tempState = JSON.parse(JSON.stringify(state.products))
-			if ((sort.length !== 0) & (category.length !== 0)) {
-				// tempState = JSON.parse(JSON.stringify(state.products))
-				const filteredItems = tempState.filter((p) => p.category === category)
-				//
-				if (sort === 'asc') {
-					sortedItems = sortUtility(filteredItems, 'price')
-				} else if (sort === 'desc') {
-					sortedItems = sortUtility(filteredItems, 'price').reverse()
-				} else if (sort === 'a-z') {
-					sortedItems = sortUtility(filteredItems, 'title')
-				} else if (sort === 'z-a') {
-					sortedItems = sortUtility(filteredItems, 'title').reverse()
-				}
-				//
-			} else if ((sort.length !== 0) & (category.length === 0)) {
-				// tempState = JSON.parse(JSON.stringify(state.products))
-				if (sort === 'asc') {
-					sortedItems = sortUtility(tempState, 'price')
-				} else if (sort === 'desc') {
-					sortedItems = sortUtility(tempState, 'price').reverse()
-				} else if (sort === 'a-z') {
-					sortedItems = sortUtility(tempState, 'title')
-				} else if (sort === 'z-a') {
-					sortedItems = sortUtility(tempState, 'title').reverse()
-				}
-				//
-			} else if ((sort.length === 0) & (category.length !== 0)) {
-				// tempState = JSON.parse(JSON.stringify(state.products))
-				sortedItems = tempState.filter((p) => p.category === category)
-				console.log('sort == 0 and category != 0 sortedItems', sortedItems)
-				//
-			} else if ((sort === '') & (category.length === '') & (rating.length === '')) {
+			let tempState = Object.assign({}, state.products)
+			console.log('userSelectedProductReducer State:', state.products)
+			let sortedItems = tempState
+			if ((sort === '') & (category === '') & (rating === '')) {
 				sortedItems = []
 			}
-			return { ...state, sortedProducts: sortedItems }
+			if ((rating !== '') & (category === '') & (sort === '')) {
+				sortedItems = state.products.filter((item) => item.rating.rate >= rating)
+			}
+			if ((category !== '') & (rating === '') & (sort === '')) {
+				sortedItems = state.products.filter((item) => item.category === category)
+			}
+			if (sort !== '') {
+			}
+			if ((category !== '') & (rating !== '')) {
+				let filterdItems = state.products.filter((item) => item.category === category)
+				sortedItems = filterdItems
+					? filterdItems.filter((item) => item.rating.rate >= rating)
+					: state.products.filter((item) => item.rating.rate >= rating)
+			}
+			return { ...state, userSelectedProducts: sortedItems }
 		default:
 			return state
 	}
@@ -145,14 +124,3 @@ export const filterTrendingReducer = (state = initialState, action) => {
 			return state
 	}
 }
-
-// export const userSelectedProductReducer = (state = initialState, action) => {
-// 	switch (action.type) {
-// 		case ActionTypes.USER_SELECTED_PRODUCTS:
-// 			console.log('userSelectedProductReducer State:', state)
-// 			console.log('userSelectedProductReducer Payload:', action.payload)
-// 			return { ...state, userSelectedProducts: action.payload }
-// 		default:
-// 			return state
-// 	}
-// }

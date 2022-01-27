@@ -17,7 +17,8 @@ const AllProducts = () => {
 	//update redux
 	const products = useSelector((state) => state.allProducts.products)
 	//select products as per user selection from reducer
-	const sortedProducts = useSelector((state) => state.allProducts.sortedProducts)
+	// const sortedProducts = useSelector((state) => state.allProducts.sortedProducts)
+	const sortedProducts = useSelector((state) => state.allProducts.userSelectedProducts)
 
 	const dispatch = useDispatch()
 	//loading
