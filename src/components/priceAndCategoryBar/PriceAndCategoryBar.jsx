@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
 	Checkbox,
 	FormControl,
@@ -12,82 +14,103 @@ import {
 	Slider,
 	Typography,
 } from '@material-ui/core'
-import React from 'react'
 import useStyles from './styles'
+import axios from 'axios'
+import { setProducts, userSelectedProducts } from '../../redux/actions/ProductAction'
 
 const PriceAndCategoryBar = () => {
 	const classes = useStyles()
+	const dispatch = useDispatch()
 
-	//
-	function valuetext(value) {
-		return `${value} $`
+	const products = useSelector((state) => state.allProducts.sortedProducts)
+	const productsAPI = useSelector((state) => state.allProducts.products)
+	const header = useSelector((state) => state.titles.productHeaders?.header)
+
+	const [values, setValues] = useState({ sort: '', category: '', rating: '' })
+	const [hide, setHide] = useState(false)
+
+	const handleChange = (e) => {
+		setValues({ ...values, sort: e.target.value })
 	}
 
-	const [value, setValue] = React.useState([10, 20])
+	// dispatch user options
+	let uniq = []
+	useEffect(() => {
+		dispatch(userSelectedProducts(values))
+	}, [values])
 
-	const handleChange = (event, newValue) => {
-		setValue(newValue)
-	}
-
-	//
+	// reset user options whenever product header changes
+	useEffect(() => {
+		setValues({ sort: '', category: '', rating: '' })
+	}, [header])
 
 	return (
 		<form action=''>
 			<Paper className={classes.main}>
 				<FormControl variant='outlined' className={classes.formControl}>
-					<InputLabel id='demo-simple-select-outlined-label'>Category</InputLabel>
+					{/* <InputLabel id='demo-simple-select-outlined-label'>Sort</InputLabel> */}
 					<Select
-						labelId='demo-simple-select-outlined-label'
-						id='demo-simple-select-outlined'
-						// value={age}
-						// onChange={handleChange}
+						// labelId='demo-simple-select-outlined-label'
+						// id='demo-simple-select-outlined'
+						value={values.sort}
+						onChange={(e) => setValues({ ...values, sort: e.target.value })}
 					>
 						<MenuItem value=''>
 							<em>None</em>
 						</MenuItem>
-						<MenuItem value={10}>Ten</MenuItem>
-						<MenuItem value={20}>Twenty</MenuItem>
-						<MenuItem value={30}>Thirty</MenuItem>
+						<MenuItem value={'desc'}>Price - Highest to Lowest</MenuItem>
+						<MenuItem value={'asc'}>Price - Lowest to Highest</MenuItem>
+						<MenuItem value={'a-z'}> Titles A - Z</MenuItem>
+						<MenuItem value={'z-a'}> Titles Z - A</MenuItem>
 					</Select>
+					<FormHelperText>Sort Products</FormHelperText>
 				</FormControl>
 				<FormControl variant='outlined' className={classes.formControl}>
-					<InputLabel id='demo-simple-select-filled-label'>Type</InputLabel>
+					{/* <InputLabel id='demo-simple-select-filled-label'>Categories</InputLabel> */}
+					<Select
+						// labelId='demo-simple-select-filled-label'
+						// id='demo-simple-select-filled'
+						value={values.category}
+						onChange={(e) => setValues({ ...values, category: e.target.value })}
+						disabled={productsAPI.length < 20}
+					>
+						<MenuItem value=''>
+							<em>None</em>
+						</MenuItem>
+						<MenuItem value={"women's clothing"}>Ladies</MenuItem>
+						<MenuItem value={'jewelery'}>Jewelery</MenuItem>
+						<MenuItem value={"men's clothing"}>Gents</MenuItem>
+						<MenuItem value={'electronics'}>Electronics</MenuItem>
+					</Select>
+					<FormHelperText>Filter By Categories</FormHelperText>
+				</FormControl>
+				<FormControl variant='outlined' className={classes.formControl}>
+					<InputLabel id='demo-simple-select-filled-label'>Rating</InputLabel>
 					<Select
 						labelId='demo-simple-select-filled-label'
 						id='demo-simple-select-filled'
-						value={''}
-						// onChange={handleChange}
+						value={values.rating}
+						onChange={(e) => setValues({ ...values, rating: e.target.value })}
+						disabled
 					>
 						<MenuItem value=''>
 							<em>None</em>
 						</MenuItem>
-						<MenuItem value={10}>Ten</MenuItem>
-						<MenuItem value={20}>Twenty</MenuItem>
-						<MenuItem value={30}>Thirty</MenuItem>
+						<MenuItem value={5}>5</MenuItem>
+						<MenuItem value={4}>4</MenuItem>
+						<MenuItem value={3}>3</MenuItem>
+						<MenuItem value={2}>2</MenuItem>
+						<MenuItem value={1}>1</MenuItem>
 					</Select>
 				</FormControl>
-				<FormControl variant='outlined' className={classes.formControl}>
-					<InputLabel id='demo-simple-select-filled-label'>Size</InputLabel>
-					<Select
-						labelId='demo-simple-select-filled-label'
-						id='demo-simple-select-filled'
-						value={''}
-						// onChange={handleChange}
-					>
-						<MenuItem value=''>
-							<em>None</em>
-						</MenuItem>
-						<MenuItem value={10}>Ten</MenuItem>
-						<MenuItem value={20}>Twenty</MenuItem>
-						<MenuItem value={30}>Thirty</MenuItem>
-					</Select>
-				</FormControl>
-				<FormControl variant='outlined' className={classes.formControl}>
+
+				{/*	<FormControl variant='outlined' className={classes.formControl}>
 					<InputLabel id='demo-simple-select-filled-label'>Color</InputLabel>
 					<Select
 						labelId='demo-simple-select-filled-label'
 						id='demo-simple-select-filled'
 						value={''}
+						disabled
 						// onChange={handleChange}
 					>
 						<MenuItem value=''>
@@ -180,7 +203,7 @@ const PriceAndCategoryBar = () => {
 						</FormGroup>
 					</div>
 					<FormHelperText>Click on the Checkbox to select</FormHelperText>
-				</FormControl>
+				</FormControl> */}
 			</Paper>
 		</form>
 	)

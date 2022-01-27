@@ -5,6 +5,7 @@ import {
 	productHeaderReducer,
 	SelectedProductReducer,
 	filterTrendingReducer,
+	userSelectedProductReducer,
 } from './ProductReducer'
 import { reviewReducer } from './ReviewReducer'
 const reducers = combineReducers({
@@ -14,7 +15,6 @@ const reducers = combineReducers({
 	titles: productHeaderReducer,
 	allReviews: reviewReducer,
 	trending: filterTrendingReducer,
-	// trendingItems: filterTrendingByCategoryReducer,
 })
 
 export default reducers
