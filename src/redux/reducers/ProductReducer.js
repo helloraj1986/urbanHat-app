@@ -63,7 +63,8 @@ export const ProductReducer = (state = initialState, action) => {
 			if ((category !== '') & (rating === '') & (sort === '')) {
 				sortedItems = state.products.filter((item) => item.category === category)
 			}
-			if (sort !== '') {
+			if ((sort !== '') & (rating === '') & (category === '')) {
+				sortedItems = state
 			}
 			if ((category !== '') & (rating !== '')) {
 				let filterdItems = state.products.filter((item) => item.category === category)
