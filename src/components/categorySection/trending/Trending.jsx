@@ -101,7 +101,7 @@ const Trending = () => {
 						</Typography>
 					</div>
 				</div>
-				<Divider orientation='horizontal' variant='fullWidth' gutterBottom />
+				<Divider orientation='horizontal' variant='fullWidth' />
 
 				<div className={classes.carouselContainer}>
 					<Carousel

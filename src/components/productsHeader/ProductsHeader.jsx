@@ -64,7 +64,6 @@ const ProductsHeader = () => {
 			fetchAllProducts()
 		}
 	}, [])
-	console.log('Product Header Component (allproducts):', products)
 
 	return (
 		<>

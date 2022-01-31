@@ -49,3 +49,10 @@ export const filterTrending = (type) => {
 		payload: type,
 	}
 }
+
+export const userSelectedProducts = (data) => {
+	return {
+		type: ActionTypes.USER_SELECTED_PRODUCTS,
+		payload: data,
+	}
+}

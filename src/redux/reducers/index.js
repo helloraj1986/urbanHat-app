@@ -14,7 +14,6 @@ const reducers = combineReducers({
 	titles: productHeaderReducer,
 	allReviews: reviewReducer,
 	trending: filterTrendingReducer,
-	// trendingItems: filterTrendingByCategoryReducer,
 })
 
 export default reducers

@@ -87,7 +87,7 @@ const Hero = () => {
 										type='submit'
 										variant='contained'
 										className={classes.button}
-										sizeLarge
+										size='large'
 										style={{ width: 150, height: 50 }}
 										component={Link}
 										to='/products'
