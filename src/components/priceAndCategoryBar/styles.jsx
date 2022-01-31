@@ -23,22 +23,24 @@ export default makeStyles((theme) => ({
 	sliderHeading: {
 		fontFamily: 'Jost, sans-sarif',
 		fontWeight: 600,
-    fontSize: '18px',
+		fontSize: '18px',
 	},
-  slider:{
-    marginTop: '20px'
-  },
+	slider: {
+		marginTop: '20px',
+	},
 
-  brand:{
-
-  },
-  brandControl:{
-    marginTop: '20px'
-  },
-  brandHeading:{
-    fontFamily: 'Jost, sans-sarif',
+	brand: {},
+	brandControl: {
+		marginTop: '20px',
+	},
+	brandHeading: {
+		fontFamily: 'Jost, sans-sarif',
 		fontWeight: 600,
-    fontSize: '18px',
-  }
-  
+		fontSize: '18px',
+	},
+	helperText: {
+		fontSize: '12px',
+		color: '#16161A',
+		fontFamily: 'Jost, sans-sarif',
+	},
 }))

@@ -5,7 +5,6 @@ import {
 	productHeaderReducer,
 	SelectedProductReducer,
 	filterTrendingReducer,
-	userSelectedProductReducer,
 } from './ProductReducer'
 import { reviewReducer } from './ReviewReducer'
 const reducers = combineReducers({

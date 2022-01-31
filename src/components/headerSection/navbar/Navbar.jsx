@@ -17,6 +17,7 @@ import { useDispatch } from 'react-redux'
 import { filterByCategories } from '../../../redux/actions/ProductAction'
 //
 import { capitalize, Button } from '@material-ui/core'
+import { useParams } from 'react-router-dom'
 
 //
 
@@ -35,6 +36,8 @@ const Navbar = () => {
 			.catch((err) => console.log('Category Fetch Error:', err))
 		dispatch(filterByCategories(response.data))
 	}
+	const productId = useParams()
+	const categoryId = useParams()
 
 	//useEfect on Load
 	useEffect(() => {

@@ -10,7 +10,7 @@ import SkeletationAnimation from '../skeletationAnimation/SkeletationAnimation'
 //
 import axios from 'axios'
 //import action
-import { setProducts, removeProductHeader } from '../../redux/actions/ProductAction'
+import { setProducts } from '../../redux/actions/ProductAction'
 
 const AllProducts = () => {
 	const classes = useStyles()
@@ -25,7 +25,7 @@ const AllProducts = () => {
 	const [loading, setLoading] = useState(true)
 	//get specific category if available
 	const { categoryId } = useParams()
-	const { productId } = useParams()
+	// const { productId } = useParams()
 
 	//fetchProducts function
 	const fetchProducts = async () => {
@@ -82,12 +82,13 @@ const AllProducts = () => {
 				<Container maxWidth='xl' className={classes.wrapper}>
 					<Grid container spacing={2}>
 						{/* if there is sorted products from reducer select that or choose all products */}
+						{/* {Object.keys(sortedProducts).length !== 0 || !header */}
 						{Object.keys(sortedProducts).length !== 0
 							? renderItems(sortedProducts) //renderItems is function render products
 							: renderItems(products)}
 					</Grid>
 					<div className={classes.paginationCon}>
-						<Pagination count={10} variant='outlined' />
+						<Pagination count={10} variant='outlined' disabled />
 					</div>
 				</Container>
 			)}

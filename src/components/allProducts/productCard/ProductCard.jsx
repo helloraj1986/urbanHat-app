@@ -28,10 +28,10 @@ const ProductCard = ({ product, progress }) => {
 					<CardActionArea>
 						<CardMedia className={classes.media} image={image} />
 						<CardContent>
-							<Typography gutterBottom variant='subtitle1' component='p'>
+							<Typography variant='subtitle1' component='p'>
 								{_.truncate(title, { length: 30 })}
 							</Typography>
-							<Typography gutterBottom variant='h6' component='h2'>
+							<Typography variant='h6' component='h2'>
 								$ {price}
 							</Typography>
 							{/* <Typography variant='body2' color='textSecondary' component='p'>

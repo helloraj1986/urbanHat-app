@@ -10,69 +10,76 @@ const initialState = {
 	sortedProducts: [],
 }
 
-// export const ProductReducer = (state = initialState, action) => {
-// 	switch (action.type) {
-// 		case ActionTypes.SET_PRODUCTS:
-// 			return { ...state, products: action.payload }
-// 		//
-// 		case ActionTypes.USER_SELECTED_PRODUCTS:
-// 			const { sort, category } = action.payload
-// 			let sortedItems = []
-// 			if ((sort.length !== 0) & (category.length !== 0)) {
-// 				const filteredItems = state.products.filter((p) => p.category === category)
-// 				if (sort === 'desc') {
-// 					sortedItems = filteredItems.sort(
-// 						(a, b) => parseFloat(b.price) - parseFloat(a.price),
-// 					)
-// 				} else if (sort === 'asc') {
-// 					sortedItems = filteredItems.sort(
-// 						(a, b) => parseFloat(a.price) - parseFloat(b.price),
-// 					)
-//
-// 			} else if ((sort.length !== 0) & (category.length === 0)) {
-// 				if (sort === 'desc') {
-// 					state.products.sort((a, b) => parseFloat(b.price) - parseFloat(a.price))
-// 				} else if (sort === 'asc') {
-// 					state.products.sort((a, b) => parseFloat(a.price) - parseFloat(b.price))
-// 				}
-// 			} else if ((sort.length === 0) & (category.length !== 0)) {
-// 				sortedItems = state.products.filter((p) => p.category === category)
-// 			}
-
-// 			return { ...state, sortedProducts: sortedItems }
-// 		default:
-// 			return state
-// 	}
-// }
-///////////////
 export const ProductReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ActionTypes.SET_PRODUCTS:
 			return { ...state, products: action.payload }
+		//
+		//
 		case ActionTypes.USER_SELECTED_PRODUCTS:
-			const { sort, category, rating } = action.payload
-			let tempState = Object.assign({}, state.products)
-			console.log('userSelectedProductReducer State:', state.products)
+			const { sort, category, rating, jacket, short, tb } = action.payload
+			let tempState = JSON.parse(JSON.stringify(state.products))
 			let sortedItems = tempState
+			//utility function for soring as per the item key in the object
+			const sortUtility = (ArrayToSort, key) => _.sortBy(ArrayToSort, key.toLowerCase())
+			//sorting function whenever sort !== ''
+			function sortAsPerUserIntput(keyword, arr) {
+				return keyword !== 'desc'
+					? keyword !== 'asc'
+						? keyword !== 'z-a'
+							? sortUtility(arr, 'title')
+							: sortUtility(arr, 'title').reverse()
+						: sortUtility(arr, 'price')
+					: sortUtility(arr, 'price').reverse()
+			}
+
+			//
 			if ((sort === '') & (category === '') & (rating === '')) {
 				sortedItems = []
 			}
 			if ((rating !== '') & (category === '') & (sort === '')) {
-				sortedItems = state.products.filter((item) => item.rating.rate >= rating)
+				sortedItems = tempState.filter((item) => item.rating.rate >= rating)
 			}
 			if ((category !== '') & (rating === '') & (sort === '')) {
-				sortedItems = state.products.filter((item) => item.category === category)
+				sortedItems = tempState.filter((item) => item.category === category)
 			}
 			if ((sort !== '') & (rating === '') & (category === '')) {
-				sortedItems = state
+				sortedItems = sortAsPerUserIntput(sort, tempState)
 			}
-			if ((category !== '') & (rating !== '')) {
-				let filterdItems = state.products.filter((item) => item.category === category)
-				sortedItems = filterdItems
-					? filterdItems.filter((item) => item.rating.rate >= rating)
-					: state.products.filter((item) => item.rating.rate >= rating)
+			if ((category !== '') & (rating !== '') & (sort === '')) {
+				let filterdItems = tempState.filter((item) => item.category === category)
+				sortedItems = filterdItems.filter((item) => item.rating.rate >= rating)
 			}
-			return { ...state, userSelectedProducts: sortedItems }
+			if ((category !== '') & (sort !== '') & (rating === '')) {
+				let filterdItems = tempState.filter((item) => item.category === category)
+				sortedItems = sortAsPerUserIntput(sort, filterdItems)
+			}
+			if ((rating !== '') & (sort !== '') & (category === '')) {
+				let filterdItems = tempState.filter((item) => item.rating.rate >= rating)
+				sortedItems = sortAsPerUserIntput(sort, filterdItems)
+			}
+			if ((rating !== '') & (sort !== '') & (category !== '')) {
+				let filterdByCategory = tempState.filter((item) => item.category === category)
+				let filterdByRating = filterdByCategory.filter((item) => item.rating.rate >= rating)
+				sortedItems = sortAsPerUserIntput(sort, filterdByRating)
+			}
+
+			if (jacket || short || tb) {
+				tempState = JSON.parse(JSON.stringify(sortedItems))
+				const testJacket = jacket ? 'jacket' : ''
+				const testShort = short ? 'short' : ''
+				const testTb = tb ? 'tb' : ''
+				sortedItems = tempState.filter((item) =>
+					[testJacket, testShort, testTb].some((e) =>
+						e !== '' ? item.title.toLowerCase().includes(e) : false,
+					),
+				)
+			}
+			return {
+				...state,
+				userSelectedProducts: sortedItems,
+				userSelectedOptions: action.payload,
+			}
 		default:
 			return state
 	}
