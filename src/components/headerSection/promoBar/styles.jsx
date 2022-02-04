@@ -8,7 +8,6 @@ export default makeStyles((theme) => ({
 		justifyContent: 'center',
 		alignItems: 'center',
 		[theme.breakpoints.down('sm')]: {
-			height: '40px',
 			width: '100vw',
 		},
 	},
@@ -18,7 +17,7 @@ export default makeStyles((theme) => ({
 		fontSize: '16px',
 		fontWeight: '400',
 		[theme.breakpoints.down('sm')]: {
-			fontSize: '10px',
+			fontSize: '8px',
 		},
 	},
 	span: {
@@ -29,6 +28,9 @@ export default makeStyles((theme) => ({
 			transform: 'translateX(10px)',
 			textDecoration: 'underline',
 			cursor: 'pointer',
+		},
+		[theme.breakpoints.down('sm')]: {
+			fontSize: '10px',
 		},
 	},
 }))
