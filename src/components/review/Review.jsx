@@ -1,9 +1,7 @@
-import { Avatar, Container, Divider, Paper, Typography, Drawer } from '@material-ui/core'
+import { Avatar, Container, Divider, Paper, Typography } from '@material-ui/core'
 import React, { useEffect, useRef, useState } from 'react'
 import useStyles from './styles'
-import test from '../../images/clothing items/l4.jpeg'
 import Carousel from 'react-grid-carousel'
-import Carousel2 from 'react-material-ui-carousel'
 import axios from 'axios'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,7 +12,7 @@ const Review = () => {
 	const reviewData = useSelector((state) => state.allReviews.reviews)
 
 	const [loading, setLoading] = useState(true)
-	const [reviewsToShow, setReviewsToShow] = useState({})
+	// const [reviewsToShow, setReviewsToShow] = useState({})
 
 	//lazy loading
 	const [isVisible, setIsVisible] = useState(false)
@@ -33,11 +31,9 @@ const Review = () => {
 		const response = await axios
 			.get('https://testimonialapi.toolcarton.com/api')
 			.catch((err) => console.log('Fetch Reviews Error:', err))
-	     dispatch(setReviews(response.data))
+		dispatch(setReviews(response.data))
 		setLoading(false)
 	}
-
-
 
 	useEffect(() => {
 		fetchReviews()

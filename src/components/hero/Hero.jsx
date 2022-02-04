@@ -3,7 +3,7 @@ import useStyles from './styles'
 //
 import clsx from 'clsx'
 
-import { Typography, Button } from '@material-ui/core'
+import { Typography, Button, useMediaQuery, useTheme } from '@material-ui/core'
 //
 import Carousel from 'react-material-ui-carousel'
 //
@@ -30,7 +30,7 @@ let heroItems = [
 	},
 	{
 		id: 3,
-		name: "Minimal WoMen's Style",
+		name: "Minimal Kid's Style",
 		description:
 			'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim eligendi debitis ullam dignissimos quisquam nisi alias, numquam quasi fugit similique vero aspernatur sed, neque suscipit!',
 		image: kid,
@@ -40,6 +40,14 @@ let heroItems = [
 const Hero = () => {
 	const classes = useStyles()
 	const [itemData, setItemData] = useState(heroItems)
+
+	//Button Resize for Mobile Display
+	const theme = useTheme()
+	const isSmScreen = useMediaQuery(theme.breakpoints.down('sm'))
+	const buttonProps = {
+		variant: isSmScreen ? 'text' : 'outlined',
+		size: isSmScreen ? 'small' : 'large',
+	}
 
 	return (
 		<>
@@ -85,10 +93,9 @@ const Hero = () => {
 									</Typography>
 									<Button
 										type='submit'
-										variant='contained'
 										className={classes.button}
-										size='large'
-										style={{ width: 150, height: 50 }}
+										{...buttonProps}
+										// style={{ width: 150, height: 50 }}
 										component={Link}
 										to='/products'
 									>

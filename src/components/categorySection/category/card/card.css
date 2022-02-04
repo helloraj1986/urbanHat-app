@@ -18,7 +18,13 @@
   position: relative;
   -webkit-box-shadow: 1px 3px 29px -5px #273236;
           box-shadow: 1px 3px 29px -5px #273236;
-  margin: 20px 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .card {
+    height: 300px;
+    width: 300px;
+  }
 }
 
 .card .imgContainer {

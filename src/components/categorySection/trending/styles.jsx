@@ -14,6 +14,9 @@ export default makeStyles((theme) => ({
 		justifyContent: 'space-between',
 		alignItems: 'center',
 		margin: '20px auto',
+		[theme.breakpoints.down('sm')]: {
+			flexDirection: 'column',
+		},
 	},
 	categorySelection: {
 		display: 'flex',
@@ -24,6 +27,9 @@ export default makeStyles((theme) => ({
 		fonrWeight: '700',
 		fontSize: '36px',
 		letterSpacing: '2px',
+		[theme.breakpoints.down('sm')]: {
+			fontSize: '20px',
+		},
 	},
 	category: {
 		padding: theme.spacing(2),
@@ -31,6 +37,10 @@ export default makeStyles((theme) => ({
 		fonrWeight: '400',
 		fontSize: '20px',
 		cursor: 'pointer',
+		[theme.breakpoints.down('sm')]: {
+			fontSize: '12px',
+			padding: '10px',
+		},
 	},
 	active: {
 		padding: theme.spacing(2),
@@ -40,6 +50,10 @@ export default makeStyles((theme) => ({
 		fontSize: '22px',
 		textDecoration: 'underline',
 		cursor: 'pointer',
+		[theme.breakpoints.down('sm')]: {
+			fontSize: '13px',
+			padding: '10px',
+		},
 	},
 	carouselContainer: {
 		margin: '20px 0',

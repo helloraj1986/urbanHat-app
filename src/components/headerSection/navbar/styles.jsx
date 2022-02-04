@@ -11,6 +11,25 @@ export default makeStyles((theme) => ({
 	toolbar: {
 		display: 'flex',
 		justifyContent: 'space-between',
+		[theme.breakpoints.down('sm')]: {
+			display: 'none',
+		},
+	},
+	toolbarForMobile: {
+		width: '100vw',
+		padding: '0px',
+		margin: '0px',
+		[theme.breakpoints.down('sm')]: {
+			display: 'flex',
+			alignItems: 'center',
+			justifyContent: 'space-around',
+		},
+		[theme.breakpoints.up('sm')]: {
+			display: 'none',
+		},
+	},
+	toolbarForMobileLeft: {
+		display: 'flex',
 	},
 	toolBarLeft: {
 		display: 'flex',
@@ -22,6 +41,11 @@ export default makeStyles((theme) => ({
 		width: '150px',
 		height: '60px',
 		cursor: 'pointer',
+		[theme.breakpoints.down('sm')]: {
+			width: '100px',
+			height: '50px',
+			cursor: 'pointer',
+		},
 	},
 	toolbarMiddle: {
 		display: 'flex',
@@ -36,6 +60,10 @@ export default makeStyles((theme) => ({
 		color: '#16001e',
 		'&:hover': {
 			textDecoration: 'underline',
+		},
+		[theme.breakpoints.down('sm')]: {
+			fontSize: '12px',
+			padding: theme.spacing(1),
 		},
 	},
 	toolbarRight: {

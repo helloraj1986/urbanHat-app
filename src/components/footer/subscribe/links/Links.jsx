@@ -31,8 +31,9 @@ const Links = () => {
 	const [data] = useState(items)
 	return (
 		<div className={classes.main}>
-			<Grid container spacing={2} className={classes.links}>
-				<Grid item md={4}>
+			{/* <Grid container spacing={2} className={classes.links}> */}
+			<Grid container spacing={0} direction='row' justify='center' className={classes.links}>
+				<Grid item md={4} sm={12} xs={12}>
 					<div>
 						<img src={logo} alt='' className={classes.logo} />
 					</div>
@@ -40,18 +41,28 @@ const Links = () => {
 				{data.map((d) => {
 					const { id, title, subItems } = d
 					return (
-						<Grid item md={2} key={id}>
-							<div className={classes.manItems}>
-								<Typography variant='h6' style={{ color: '#fdf0d5' }}>
+						<Grid item md={2} sm={6} xs={6} key={id}>
+							<div className={classes.list}>
+								<Typography
+									variant='h6'
+									style={{ color: '#fdf0d5' }}
+									className={classes.title}
+								>
 									{title}
 								</Typography>
-								<List alignitems='flex-start' dense disablePadding>
+								<List
+									alignitems='flex-start'
+									dense
+									disablePadding
+									classes={{ root: classes.list }}
+								>
 									{subItems.map((s, index) => {
 										return (
 											<ListItem disableGutters key={index}>
 												<ListItemText
 													primary={s}
 													style={{ color: '#BBB9B5' }}
+													classes={{ primary: classes.listItemtext }}
 												/>
 											</ListItem>
 										)

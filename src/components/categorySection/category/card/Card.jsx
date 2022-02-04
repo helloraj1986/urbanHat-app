@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 
 const Card = ({ c }) => {
-	const { id, title, img, link } = c
+	const { title, img, link } = c
 
 	return (
 		<div className='card'>

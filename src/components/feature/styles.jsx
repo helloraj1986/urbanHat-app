@@ -33,6 +33,10 @@ export default makeStyles((theme) => ({
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
+		[theme.breakpoints.down('sm')]: {
+			height: '150px',
+			width: '170px',
+		},
 	},
 	icon: {
 		height: '40px',
@@ -40,13 +44,24 @@ export default makeStyles((theme) => ({
 		margin: '20px',
 		fontWeight: '200',
 		color: 'grey',
+		[theme.breakpoints.down('sm')]: {
+			height: '20px',
+			width: '20px',
+			margin: '10px',
+		},
 	},
 	title: {
 		fontFamily: 'Jost, sans-sarif',
 		fontWeight: '500',
 		margin: '2px 0',
+		[theme.breakpoints.down('sm')]: {
+			fontSize: '16px',
+		},
 	},
 	desc: {
 		fontFamily: 'Jost, sans-sarif',
+		[theme.breakpoints.down('sm')]: {
+			fontSize: '12px',
+		},
 	},
 }))

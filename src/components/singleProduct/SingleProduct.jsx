@@ -5,13 +5,15 @@ import {
 	Button,
 	Container,
 	Typography,
+	useMediaQuery,
+	useTheme,
 } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import useStyles from './styles'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectedProduct, setProductHeader, setProducts } from '../../redux/actions/ProductAction'
+import { selectedProduct } from '../../redux/actions/ProductAction'
 //
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 //
@@ -49,6 +51,8 @@ const SingleProduct = () => {
 		fetchProductDetail()
 	}, [link])
 
+	const theme = useTheme()
+	const isSmScreen = useMediaQuery(theme.breakpoints.down('sm'))
 	return (
 		<>
 			{loading && <SingleProductAnimation />}
@@ -125,8 +129,12 @@ const SingleProduct = () => {
 								</div>
 								<Button
 									variant='outlined'
-									size='large'
-									classes={{ root: classes.btn, text: classes.fontFam }}
+									size={`${isSmScreen ? 'small' : 'large'}`}
+									classes={{
+										root: classes.btn,
+										text: classes.fontFam,
+										outlinedSizeSmall: classes.btnLabel,
+									}}
 								>
 									Add to Cart
 								</Button>
@@ -150,7 +158,10 @@ const SingleProduct = () => {
 									</Typography>
 								</AccordionSummary>
 								<AccordionDetails>
-									<Typography variant='body2' className={classes.fontFam}>
+									<Typography
+										variant='body2'
+										className={clsx(classes.fontFam, classes.accordDetails)}
+									>
 										{product?.description}
 									</Typography>
 								</AccordionDetails>

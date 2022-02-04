@@ -7,12 +7,19 @@ export default makeStyles((theme) => ({
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
+		[theme.breakpoints.down('sm')]: {
+			height: '40px',
+			width: '100vw',
+		},
 	},
 	text: {
 		color: '#fff',
 		fontFamily: 'Jost, sans-serif',
 		fontSize: '16px',
 		fontWeight: '400',
+		[theme.breakpoints.down('sm')]: {
+			fontSize: '10px',
+		},
 	},
 	span: {
 		color: 'gold',

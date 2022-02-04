@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { AppBar, Divider, Toolbar, Typography } from '@material-ui/core'
+import React, { useEffect } from 'react'
+import { AppBar, Divider, Menu, MenuItem, Toolbar, Typography } from '@material-ui/core'
 import useStyles from './styles'
 import logo from '../../../images/logo/logo.svg'
 //icons
@@ -18,6 +18,8 @@ import { filterByCategories } from '../../../redux/actions/ProductAction'
 //
 import { capitalize, Button } from '@material-ui/core'
 import { useParams } from 'react-router-dom'
+//
+import MenuIcon from '@material-ui/icons/Menu'
 
 //
 
@@ -36,8 +38,16 @@ const Navbar = () => {
 			.catch((err) => console.log('Category Fetch Error:', err))
 		dispatch(filterByCategories(response.data))
 	}
-	const productId = useParams()
-	const categoryId = useParams()
+
+	//for Mobile display
+	const [anchorEl, setAnchorEl] = React.useState(null)
+	const open = Boolean(anchorEl)
+	const handleClick = (event) => {
+		setAnchorEl(event.currentTarget)
+	}
+	const handleClose = () => {
+		setAnchorEl(null)
+	}
 
 	//useEfect on Load
 	useEffect(() => {
@@ -51,11 +61,85 @@ const Navbar = () => {
 					<HeaderBar />
 					<Divider orientation='horizontal' variant='fullWidth' />
 				</HideOn>
+				{/* For Mobile Display 
+				//
+				//*/}
+				<Toolbar className={classes.toolbarForMobile}>
+					<div className={classes.toolbarForMobileLeft}>
+						<Button variant='text' color='default' component={Link} to='/'>
+							<img src={logo} alt='' className={classes.logo} />
+						</Button>
+					</div>
+					<div className={classes.toolbarForMobileRight}>
+						<Button
+							id='demo-positioned-button'
+							aria-controls={open ? 'demo-positioned-menu' : undefined}
+							aria-haspopup='true'
+							aria-expanded={open ? 'true' : undefined}
+							onClick={handleClick}
+						>
+							<MenuIcon />
+						</Button>
+						<Menu
+							id='demo-positioned-menu'
+							aria-labelledby='demo-positioned-button'
+							anchorEl={anchorEl}
+							open={open}
+							onClose={handleClose}
+							anchorOrigin={{
+								vertical: 'top',
+								horizontal: 'left',
+							}}
+							transformOrigin={{
+								vertical: 'top',
+								horizontal: 'left',
+							}}
+						>
+							<MenuItem
+								onClick={handleClose}
+								component={Link}
+								to='/'
+								className={classes.title}
+								dense
+							>
+								Home
+							</MenuItem>
+							<MenuItem
+								onClick={handleClose}
+								component={Link}
+								to='/products'
+								className={classes.title}
+								dense
+							>
+								Collections
+							</MenuItem>
+							{Object.values(categories).map((c, index) => {
+								return (
+									<MenuItem
+										onClick={handleClose}
+										component={Link}
+										to={`/products/category/${c}`}
+										className={classes.title}
+										dense
+									>
+										{capitalize(c)}
+									</MenuItem>
+								)
+							})}
+							<MenuItem
+								onClick={handleClose}
+								component={Link}
+								to='/contacts'
+								className={classes.title}
+								dense
+							>
+								Contact
+							</MenuItem>
+						</Menu>
+					</div>
+				</Toolbar>
 				<Toolbar className={classes.toolbar}>
 					<div className={classes.toolbarLeft}>
-						{/* <a component={Link} to='/'>
-							<img src={logo} alt='' className={classes.logo} />
-						</a> */}
 						<Button variant='text' color='default' component={Link} to='/'>
 							<img src={logo} alt='' className={classes.logo} />
 						</Button>
@@ -95,7 +179,13 @@ const Navbar = () => {
 							)
 						})}
 
-						<Typography className={classes.title} variant='h6' noWrap>
+						<Typography
+							className={classes.title}
+							variant='h6'
+							noWrap
+							component={Link}
+							to='/contacts'
+						>
 							Contact
 						</Typography>
 					</div>

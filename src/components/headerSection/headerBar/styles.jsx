@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core'
+import { createTheme, makeStyles } from '@material-ui/core'
 
 export default makeStyles((theme) => ({
 	headerBar: {
@@ -8,7 +8,9 @@ export default makeStyles((theme) => ({
 		backgroundColor: '#edf6f9',
 		justifyContent: 'space-between',
 		color: theme.palette.text.primary,
-		
+		[theme.breakpoints.down('sm')]: {
+			display: 'none',
+		},
 	},
 	headerBarLeft: {
 		display: 'flex',

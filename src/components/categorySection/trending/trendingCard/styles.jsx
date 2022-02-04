@@ -7,12 +7,18 @@ export default makeStyles((theme) => ({
 		border: '1px solid',
 		padding: '10px',
 		boxShadow: '5px 10px red',
+		[theme.breakpoints.down('sm')]: {
+			minWidth: 250,
+		},
 	},
 	cardActionArea: {
 		height: '400px',
 		width: '100%',
 		position: 'relative',
 		backgroundColor: 'black',
+		[theme.breakpoints.down('sm')]: {
+			height: '350px',
+		},
 
 		'&:hover > $cardInfo > $title': {
 			color: '#ff2020',
@@ -25,7 +31,6 @@ export default makeStyles((theme) => ({
 		},
 		'&:not(hover) > $cardMedia': {
 			transition: 'opacity 300ms ease',
-
 			opacity: '1',
 		},
 
@@ -93,6 +98,10 @@ export default makeStyles((theme) => ({
 		color: '#74706b',
 		fonSize: '24px',
 		fontWeight: '500',
+		[theme.breakpoints.down('sm')]: {
+			fonSize: '14px',
+			width: '80%',
+		},
 	},
 	disPrice: {
 		'&:hover': {

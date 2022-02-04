@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { filterTrending, setProducts } from '../../../redux/actions/ProductAction'
 import axios from 'axios'
 import { Skeleton } from '@material-ui/lab'
-import { Link } from 'react-router-dom'
 
 const Trending = () => {
 	const [category, setCategory] = useState("men's clothing")

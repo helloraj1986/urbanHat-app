@@ -1,4 +1,4 @@
-import { Button, makeStyles,withStyles } from '@material-ui/core'
+import { Button, makeStyles, withStyles } from '@material-ui/core'
 
 export default makeStyles((theme) => ({
 	//common classes
@@ -11,11 +11,32 @@ export default makeStyles((theme) => ({
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'left',
+		[theme.breakpoints.down('sm')]: {
+			alignItems: 'center',
+		},
 	},
 	white: {
 		color: '#fdf0d5',
 		fontFamily: 'Jost, Sans-Sarif',
+		[theme.breakpoints.down('sm')]: {
+			fontSize: '14px',
+			paddingTop: '5px',
+		},
 	},
+	subscribeHeader: {
+		[theme.breakpoints.down('sm')]: {
+			fontSize: '24px',
+		},
+	},
+	subscribeDesc: {
+		[theme.breakpoints.down('sm')]: {
+			fontSize: '12px',
+			display: 'flex',
+			alignItems: 'center',
+			justifyContent: 'center',
+		},
+	},
+
 	//classes by section
 	main: {
 		width: '100%',
@@ -25,6 +46,9 @@ export default makeStyles((theme) => ({
 	},
 	sub: {
 		padding: '40px 60px',
+		[theme.breakpoints.down('sm')]: {
+			padding: '10px 60px',
+		},
 	},
 	topLeft: {
 		padding: '0 20px',
@@ -42,9 +66,14 @@ export default makeStyles((theme) => ({
 		justifyContent: 'space-around',
 		marginTop: '0',
 	},
+
+	fontsSizeforSmallScreen: {
+		width: '24px',
+		height: '24px',
+	},
 }))
 
-export const BootstrapButton = withStyles({
+export const BootstrapButton = withStyles((theme) => ({
 	root: {
 		marginLeft: '20px',
 		boxShadow: 'none',
@@ -58,6 +87,11 @@ export const BootstrapButton = withStyles({
 		backgroundColor: '#e63946',
 		borderColor: '#9d0208',
 		fontFamily: ['Jost'].join(','),
+		[theme.breakpoints.down('sm')]: {
+			marginLeft: '0px',
+			marginTop: '10px',
+		},
+
 		'&:hover': {
 			backgroundColor: '#9d0208',
 			borderColor: '#6a040f',
@@ -72,4 +106,4 @@ export const BootstrapButton = withStyles({
 			boxShadow: '0 0 0 0.2rem #6a040f',
 		},
 	},
-})(Button)
+}))(Button)

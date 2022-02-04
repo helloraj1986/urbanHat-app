@@ -1,3 +1,5 @@
+$media-mobile: 'only screen and (max-width : 600px)';
+
 .card {
 	display: flex;
 	flex-direction: column;
@@ -8,7 +10,12 @@
 	border-radius: 10px;
 	position: relative;
 	box-shadow: 1px 3px 29px -5px #273236;
-	margin: 20px 20px;
+	@media #{$media-mobile} {
+		height: 300px;
+		width: 300px;
+	}
+
+	// margin: 20px 20px;
 
 	.imgContainer {
 		width: 100%;
@@ -35,7 +42,6 @@
 			font-family: Jost, sans-serif;
 			margin-bottom: 10px;
 			color: #e63946;
-		
 		}
 
 		.btn {
@@ -49,7 +55,6 @@
 				letter-spacing: 1px;
 				transition: letter-spacing 250ms ease;
 			}
-	
 		}
 	}
 
@@ -68,7 +73,7 @@
 		transition: opacity 450ms ease;
 		opacity: 1;
 	}
-	&:hover > .cardContent >.cardTitle {
+	&:hover > .cardContent > .cardTitle {
 		color: #ebe4e4;
 	}
 

@@ -17,7 +17,6 @@ const AllProducts = () => {
 	//update redux
 	const products = useSelector((state) => state.allProducts.products)
 	//select products as per user selection from reducer
-	// const sortedProducts = useSelector((state) => state.allProducts.sortedProducts)
 	const sortedProducts = useSelector((state) => state.allProducts.userSelectedProducts)
 
 	const dispatch = useDispatch()
@@ -26,7 +25,6 @@ const AllProducts = () => {
 	//get specific category if available
 	const { categoryId } = useParams()
 	// const { productId } = useParams()
-
 	//fetchProducts function
 	const fetchProducts = async () => {
 		setLoading(true)

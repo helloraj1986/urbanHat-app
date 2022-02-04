@@ -11,11 +11,17 @@ export default makeStyles((theme) => ({
 		flexDirection: 'column',
 		padding: '40px 40px',
 		marginTop: '50px',
+		[theme.breakpoints.down('sm')]: {
+			marginTop: '20px',
+		},
 	},
 	formControl: {
 		margin: theme.spacing(1),
 		minWidth: 200,
 		marginBottom: theme.spacing(2),
+		[theme.breakpoints.down('sm')]: {
+			marginBottom: theme.spacing(2),
+		},
 	},
 	sliderDiv: {
 		margin: '20px 0px',

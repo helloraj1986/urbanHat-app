@@ -37,9 +37,9 @@ const Category = () => {
 				<Container
 					className={`${classes.categoryContainer} ${isVisible ? classes.animate : ''}`}
 					ref={domRef}
-					style={{ justifyContent: 'center' }}
+					fixed
 				>
-					<Grid container spacing={2}>
+					<Grid container spacing={2} justifyContent='center'>
 						{categoryData.map((c) => {
 							return (
 								<Grid
@@ -47,7 +47,6 @@ const Category = () => {
 									xs={12}
 									sm={6}
 									md={4}
-									align='center'
 									className={classes.grid}
 									key={c.id}
 								>

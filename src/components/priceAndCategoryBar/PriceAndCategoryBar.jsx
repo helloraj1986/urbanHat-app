@@ -33,7 +33,7 @@ const PriceAndCategoryBar = () => {
 		tb: 'false',
 	})
 	const { jacket, short, tb } = values
-	const [hide, setHide] = useState(true)
+	// const [hide, setHide] = useState(true)
 
 	const handleChange = (e) => {
 		setValues({ ...values, [e.target.name]: e.target.checked })
@@ -48,7 +48,7 @@ const PriceAndCategoryBar = () => {
 	//
 	useEffect(() => {
 		dispatch(userSelectedProducts(values))
-		setHide(false)
+		// setHide(false)
 	}, [values])
 
 	// reset user options whenever product header changes

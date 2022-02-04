@@ -69,7 +69,11 @@ const ProductsHeader = () => {
 		<>
 			{!loading && (
 				<div className={classes.header} justifyContent='center'>
-					<Typography variant='h3' color='initial' className={classes.textFont}>
+					<Typography
+						variant='h3'
+						color='initial'
+						className={clsx(classes.textFont, classes.smDisplayMargin)}
+					>
 						{titles.header}
 					</Typography>
 					<div className={classes.headerLinks}>
@@ -78,15 +82,19 @@ const ProductsHeader = () => {
 							color='initial'
 							className={clsx(classes.links, classes.textFont)}
 							component={Link}
+							style={{
+								marginLeft: !productId && !categoryId ? '10px' : '0px',
+							}}
 							to='/'
 						>
 							Home
 						</Typography>
-						{productId || categoryId ? (
+						{/* {productId || categoryId ? (
 							<Divider orientation='vertical' flexItem />
 						) : (
 							<Divider orientation='vertical' flexItem style={{ display: 'none' }} />
-						)}
+						)} */}
+						{productId || categoryId ? <Divider orientation='vertical' flexItem /> : ''}
 
 						<Typography
 							variant='subtitle1'
